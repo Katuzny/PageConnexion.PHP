@@ -1,28 +1,46 @@
 <?php
-if (!empty($_POST)){
-	$stock = ["julien" => "123456","kevin" => "azerty"];
-	$username = $_POST["username"];
-	$password = $_POST["password"];
+session_start();
+if (isset($_SESSION["connect"])){
+	$connect = $_SESSION["connect"];
+}else{
+	$connect = false;
+}
+if ($connect) {
+	header("Location: http://localhost/pageconnexion/page.php");
+}
+$errusername="";
+$errpassword="";
 
-	if (!empty($username) && !empty($password)){
-		if(isset($stock[$username])){
-			if ($password === $stock[$username]){
-					die("connecté");
+	if (!empty($_POST)){
+		$stock = require 'stock.php';
+		$username = $_POST["username"];
+		$password = $_POST["password"];
+
+		if (!empty($username) && !empty($password)){
+			if(isset($stock[$username])){
+				if ($password === $stock[$username]){
+						
+						$_SESSION["connect"] = true;
+						$_SESSION["username"] = $username;
+						header("Location: http://localhost/pageconnexion/page.php");
+				}else{
+					header("HTTP/1.0 403 Forbidden");
+				}
 			}else{
 				header("HTTP/1.0 403 Forbidden");
 			}
 		}else{
-			header("HTTP/1.0 403 Forbidden");
+			if (empty($username)){
+				$errusername="class=\"danger\"";
+			}
+			if (empty($password)){
+				$errpassword="class=\"danger\"";
 		}
-	}else{
-		die("Il manque un champ");
 	}
 }
 
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
