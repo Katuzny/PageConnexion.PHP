@@ -15,7 +15,7 @@ if (!empty($_POST)){
 			header("HTTP/1.0 403 Forbidden");
 		}
 	}else{
-		die("manque un champ");
+		die("Il manque un champ");
 	}
 }
 
