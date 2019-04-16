@@ -9,7 +9,7 @@ if (isset($_SESSION["connect"])) {
 	$connect = false;
 }
 if (empty($connect)){
-	header("Location: http://localhost/pageconnection/index.php");	
+	header("Location: http://localhost/pageconnexion/index.php");	
 }
 if (isset($_SESSION["username"])) {
 	$username = $_SESSION["username"];

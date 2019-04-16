@@ -1,5 +1,6 @@
 <?php
 return [
 	"julien" 	=> 	"123456",
-	"kevin" 	=> 	"azerty"
+	"kevin" 	=> 	"azerty",
+	"katuzny"	=>	"987654"
 ];

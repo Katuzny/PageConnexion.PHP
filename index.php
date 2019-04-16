@@ -11,7 +11,7 @@ if ($connect) {
 $errusername="";
 $errpassword="";
 
-	if (!empty($_POST)){
+if (!empty($_POST)){
 		$stock = require 'stock.php';
 		$username = $_POST["username"];
 		$password = $_POST["password"];
@@ -57,8 +57,8 @@ $errpassword="";
 					<h2>Identification</h2>
 				</header>
 				<form action="" method="post">
-					<input type="text" name="username" placeholder="Nom d'utilisateur" required="required">
-					<input type="password" name="password" placeholder="Mot de passe" required="required">
+					<input <?= $errusername ?> type="text" name="username" placeholder="Nom d'utilisateur" required="required" />
+					<input <?= $errpassword ?> type="password" name="password" placeholder="Mot de passe" required="required" />
 					<button type="submit">Connexion</button>
 			</form>
 			</div>
