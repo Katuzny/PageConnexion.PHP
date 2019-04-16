@@ -1,5 +1,5 @@
 <?php
 $dbhost = "localhost"; 
-$dbname = 'sitebiere'; 
+$dbname = ''; 
 $dbuser = 'katuzny';
-$dbpassword = 'angel2000';
+$dbpassword = 'QNf88M3yfTvqY6a';

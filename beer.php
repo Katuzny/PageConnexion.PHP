@@ -1,7 +1,9 @@
 <?php
 require 'connect.php';
 require 'db.php';
-$sql = "SELECT * FROM biere";
+
+
+$sql = "SELECT * FROM sitebiere";
 $statement = $pdo->query($sql);
 $tabbeer = $statement->fetchAll();
 ?>
