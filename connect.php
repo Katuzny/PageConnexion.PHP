@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if(isset($_GET["deconnect"]) && $_GET["deconnect"]){
 	unset($_SESSION["connect"]);
@@ -11,6 +12,7 @@ if (isset($_SESSION["connect"])) {
 if (empty($connect)){
 	header("Location: http://localhost/pageconnexion/index.php");	
 }
+
 if (isset($_SESSION["username"])) {
 	$username = $_SESSION["username"];
 }else{

@@ -1,16 +1,14 @@
 <?php
 require 'connect.php';
 require 'db.php';
-
-
-$sql = "SELECT * FROM sitebiere";
+$sql = "SELECT * FROM biere";
 $statement = $pdo->query($sql);
 $tabbeer = $statement->fetchAll();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>les bières</title>
+	<title>Les bières</title>
 	<meta charset="utf-8">
 </head>
 <body>

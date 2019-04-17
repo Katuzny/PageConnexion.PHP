@@ -16,7 +16,7 @@ require 'db.php';
 if(isset($_POST["id"])){
 	$id = $_POST["id"];
 	//$sql = "DELETE FROM `biere` WHERE `id`=3";
-	$sql = "DELETE FROM `sitebiere` WHERE `id`= ?";
+	$sql = "DELETE FROM `biere` WHERE `id`= ?";
 	$statement = $pdo->prepare($sql);
 	$statement->execute([$id]);
 }

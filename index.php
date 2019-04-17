@@ -1,44 +1,53 @@
 <?php
 session_start();
-if (isset($_SESSION["connect"])){
+if (isset($_SESSION["connect"])) {
 	$connect = $_SESSION["connect"];
 }else{
 	$connect = false;
 }
-if ($connect) {
-	header("Location: http://localhost/pageconnexion/page.php");
+if($connect){
+	header("Location: page.php");
+	//fin du traitement
 }
 $errusername="";
 $errpassword="";
-
-if (!empty($_POST)){
-		$stock = require 'stock.php';
-		$username = $_POST["username"];
-		$password = $_POST["password"];
-
-		if (!empty($username) && !empty($password)){
-			if(isset($stock[$username])){
-				if ($password === $stock[$username]){
-						
-						$_SESSION["connect"] = true;
-						$_SESSION["username"] = $username;
-						header("Location: http://localhost/pageconnexion/page.php");
-				}else{
-					header("HTTP/1.0 403 Forbidden");
-				}
+if(!empty($_POST)){
+	$stock = require 'stock.php';
+	$username = $_POST["username"];
+	$password = $_POST["password"];
+	if (!empty($username) && !empty($password)){
+		//recuperation users
+		require_once 'db.php';
+		$sql = "SELECT * FROM users WHERE `name`= ?";
+		$statement = $pdo->prepare($sql);
+		$statement->execute([$username]);
+		$user = $statement->fetch();
+		
+		/* verifier couple user / mdp */
+		if($user){
+			if ($password === $user["password"]){
+					
+					$_SESSION["connect"] = true;
+					$_SESSION["username"] = $username;
+					header("Location: http://localhost/pageconnexion/page.php");
 			}else{
 				header("HTTP/1.0 403 Forbidden");
+				/*  USERNAME ou MDP pas bon */
 			}
 		}else{
-			if (empty($username)){
-				$errusername="class=\"danger\"";
-			}
-			if (empty($password)){
-				$errpassword="class=\"danger\"";
+			header("HTTP/1.0 403 Forbidden");
+			/* USERNAME ou MDP pas bon */
 		}
+	}else{
+		if(empty($username)){
+			$errusername= "class=\"danger\"";
+		}
+		if(empty($password)){
+			$errpassword="class=\"danger\"";
+		}
+		
 	}
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +56,7 @@ if (!empty($_POST)){
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-with, initial-scale=1.0">
 	<title>Formulaire de connexion</title>
-	<link rel="stylesheet" type="text/css" href="Assets/CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="Assets/css/login.css">
 </head>
 <body>
 	<div class="wrapper">
