@@ -1,4 +1,5 @@
 <?php
+
 $dbhost = "Localhost"; 
 $dbname = ''; 
 $dbuser = 'Katuzny';

@@ -10,23 +10,27 @@ $users = $statement->fetchAll();
 ?>
 
 
-
 <h2>Liste des utilisateurs :</h2>
-<ul style="list-style-type: none;">
-	<!-- TODO : changer point en tiret -->
+<section>
 	<!-- boucle sur le tableau users -->
 	<?php foreach ($users as $user): ?>
-		
-		<li>- <?= $user["name"] ?> mdp : <?= $user["password"] ?></li>
-	
+		<article>
+			<form method="POST" action="update.php">
+				<input type="text" name="username" value="<?= $user["name"] ?>">
+				<input type="text" name="password" placeholder="modification mdp">
+				<input type="hidden" name="id" value="<?= $user["id"]
+				?>">
+				<button type="submit">Modifier</button>
+			</form>
+		</article> 
 	<?php endforeach; ?>
 	<!-- fin boucle -->
-</ul>
+</section>
 
 
 
 
-<a href="profil.php">Mon profil</a><br/>
-<a href="beer.php">Les bières</a><br/>
 <a href="page.php">Site</a><br/>
-<a href="?deconnect=true">Déconnexion</a>
+<a href="profil.php">Mon Profil</a><br/>
+<a href="beer.php">Les Bières</a><br/>
+<a href="?deconnect=true">déconnexion</a>

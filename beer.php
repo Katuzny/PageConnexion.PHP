@@ -1,6 +1,7 @@
 <?php
 require 'connect.php';
 require 'db.php';
+
 $sql = "SELECT * FROM biere";
 $statement = $pdo->query($sql);
 $tabbeer = $statement->fetchAll();
@@ -25,9 +26,9 @@ $tabbeer = $statement->fetchAll();
 		<?php endforeach; ?>
 	</section>
 	<nav>
+		<a href="page.php">Site</a><br/>
 		<a href="profil.php">Mon profil</a><br/>
 		<a href="beer.php">Les bières</a><br/>
-		<a href="page.php">Site</a><br/>
 		<a href="?deconnect=true">Déconnexion</a>
 	</nav>
 </body>
